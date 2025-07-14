@@ -36,7 +36,7 @@ currencyCards.forEach(card => {
     modalTableBody.innerHTML = '<tr><td colspan="3">Загрузка...</td></tr>';
 
     try {
-      const res = await fetch(`https://api.frankfurter.app/latest?from=${base}`);
+      const res = await fetch(`https://api.exchangerate.host/latest?base=${base}`);
       const data = await res.json();
       const rates = data.rates;
 
