@@ -24,7 +24,7 @@ const currencyFlags = {
 function getFlagHTML(code) {
   const filename = currencyFlags[code];
   return filename
-    ? `<img src="D:Curion/flags/${filename}" alt="${code}" width="24" height="16">`
+    ? `<img src="Curion/flags/${filename}" alt="${code}" width="24" height="16">`
     : '';
 }
 
