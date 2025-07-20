@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curion</title>
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo"><a href="#hero">Curion</a></div>
+        <ul class="nav-links">
+          <li><a href="#currencies">Валюты</a></li>
+          <li><a href="#currencies">Сравнение</a></li>
+        </ul>
+        
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+      </div>
+    </nav>
+
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Curion</h1>
+          <p>Точный и удобный сервис для обмена валют</p>
+          <a href="#currencies" class="hero-button">Узнать больше</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="currencies-section" id="currencies">
+      <div class="container">
+        <h2 class="section-title">Популярные валюты</h2>
+        <div class="currency-grid">
+         
+        </div>
+      </div>
+    </section>
+
+    <!-- Модалка-заглушка -->
+  <div class="modal-overlay" id="modal">
+  <div class="modal">
+    <span class="modal-close" id="modal-close">&times;</span>
+    <h3>Курсы валют</h3>
+    <table>
+      <thead>
+        <tr><th>Валюта</th><th>Курс</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<section class="comparison-section" id="comparison">
+  <div class="container">
+    <h2 class="section-title">Сравнение валют</h2>
+    
+    <form id="compare-form" class="compare-form">
+      <input type="number" id="amount" placeholder="Сумма" min="0" required>
+      
+      <select id="from-currency" required>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="JPY">JPY</option>
+        <option value="CNY">CNY</option>
+        <option value="KRW">KRW</option>
+        <option value="CHF">CHF</option>
+        <option value="CAD">CAD</option>
+        <option value="AUD">AUD</option>
+        <option value="TRY">TRY</option>
+        <!-- добавь остальные, если нужно -->
+      </select>
+
+      <span class="arrow">→</span>
+
+      <select id="to-currency" required>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="JPY">JPY</option>
+        <option value="CNY">CNY</option>
+        <option value="KRW">KRW</option>
+        <option value="CHF">CHF</option>
+        <option value="CAD">CAD</option>
+        <option value="AUD">AUD</option>
+        <option value="TRY">TRY</option>
+        <!-- добавь остальные, если нужно -->
+      </select>
+
+      <button type="submit">Сравнить</button>
+    </form>
+
+    <div id="compare-result" class="compare-result"></div>
+  </div>
+</section>
+
+
+
+    <script src="main.js"></script>
+  </body>
+</html>
