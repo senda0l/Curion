@@ -29,12 +29,12 @@ function getFlagHTML(code) {
     : '';
 }
 
-// 📌 Генерация карточек валют
+
 async function loadCurrencies() {
   try {
     const res = await fetch('https://api.frankfurter.app/currencies');
     const data = await res.json();
-    const codes = Object.keys(data).slice(0, 30); // максимум 15 валют
+    const codes = Object.keys(data).slice(0, 30); 
 
     codes.forEach(code => {
       const card = document.createElement('div');
@@ -43,7 +43,7 @@ async function loadCurrencies() {
       card.textContent = code;
       currencyGrid.appendChild(card);
 
-      // Привязка обработчика к карточке
+
       card.addEventListener('click', () => openModal(code));
     });
   } catch (err) {
@@ -82,7 +82,7 @@ async function openModal(base) {
   }
 }
 
-// Закрытие модалки
+
 modalClose.addEventListener('click', () => modal.classList.remove('active'));
 modal.addEventListener('click', e => {
   if (e.target === modal) modal.classList.remove('active');
@@ -91,17 +91,26 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') modal.classList.remove('active');
 });
 
-// Темная тема
-const toggleBtn = document.getElementById('theme-toggle');
-const body = document.body;
 
-toggleBtn.addEventListener('click', () => {
-  body.classList.toggle('dark');
-  const isDark = body.classList.contains('dark');
-  toggleBtn.textContent = isDark ? '☀️' : '🌙';
-});
+  const toggleBtn = document.getElementById('theme-toggle');
+  const body = document.body;
 
-// Сравнение валют
+  toggleBtn.addEventListener('click', () => {
+
+    body.classList.toggle('dark');
+    const isDark = body.classList.contains('dark');
+    toggleBtn.textContent = isDark ? '☀️' : '🌙';
+
+
+    toggleBtn.classList.add('spinning');
+
+
+    toggleBtn.addEventListener('animationend', () => {
+      toggleBtn.classList.remove('spinning');
+    },);
+  });
+
+
 const form = document.getElementById('compare-form');
 const resultEl = document.getElementById('compare-result');
 
@@ -130,5 +139,5 @@ form.addEventListener('submit', async (e) => {
   }
 });
 
-// Загружаем валюты на старте
+
 loadCurrencies();
