@@ -1,11 +1,12 @@
-html{
-    scroll-behavior: smooth;
+html {
+  scroll-behavior: smooth;
 }
 
 :root {
-  --primary: #1e40af;           
+  --primary: #1e40af;
   --primary-light: #3b82f6;
   --accent: #2563eb;
+  --fb-bg:#3b82f6;
 
   --bg: #ffffff;
   --text: #111111;
@@ -23,9 +24,10 @@ html{
 }
 
 body.dark {
-  --primary: #3b82f6;             
+  --primary: #3b82f6;
   --primary-light: #60a5fa;
   --accent: #60a5fa;
+  --fb-bg:#1e3a8a;
 
   --bg: #121212;
   --text: #f5f5f5;
@@ -53,22 +55,151 @@ body.dark {
   text-align: center;
 }
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-
 
 .spinning {
   animation: spin 0.5s linear;
 }
-
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
 }
+/*  */
+.feedback {
+  position: fixed;
+  left: 30px;
+  top: 93vh;
+  z-index: 1000;
+  cursor: pointer;
+}
+.feedback svg {
+  background-color: #3b82f6;
+  border-radius: 50%;
+  fill: white;
+  padding: 5px;
 
+}
+
+.modal-fb {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  z-index: 1005;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.modal-fb.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fb-content {
+  background-color: var(--modal-bg);
+  color: var(--modal-text);
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.modal-fb.active .fb-content {
+  transform: scale(1);
+}
+
+.fb-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--modal-text);
+  cursor: pointer;
+}
+
+.fb-content-title {
+  top: 0px;
+  position: absolute;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--modal-text);
+}
+
+.card {
+  margin-top: 40px;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  border: 1px solid black;
+  border-radius: 12px 0px 0 0px;
+  border-right: transparent;
+  cursor: text;
+  outline: none;
+  font-family: "Inter", sans-serif;
+
+}
+
+.text {
+  outline: none;
+  border-radius: 0px 0px 0 12px;
+  min-width: 380px;
+  max-width: 380px;
+  max-height: 80vh;
+  /* font-family: "Inter", sans-serif; */
+
+  
+}
+
+.btns {
+  display: flex;
+}
+
+#btn {
+  border: 1px solid black;
+  border-left: none;
+  border-radius: 0px 12px 12px 0px;
+  cursor: pointer;
+}
+#send {
+  border: 1px solid black;
+  background: var(--fb-bg);
+  cursor: pointer;
+  color: white;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+}
+
+/*  */
 
 .navbar {
   position: fixed;
@@ -108,20 +239,17 @@ body.dark {
   padding-bottom: 5px;
 }
 
-
 .nav-links a:hover {
   color: var(--accent-text);
-  border-bottom: 1px solid var(--text) ;
+  border-bottom: 1px solid var(--text);
 }
-
-
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   background-color: var(--accent-bg);
+  position: relative;
 }
-
 
 .hero {
   height: 100vh;
@@ -155,14 +283,15 @@ body {
   font-weight: 500;
   border-radius: 8px;
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .hero-button:hover {
   background-color: var(--accent-hover-bg);
   color: var(--accent-hover-text);
 }
-
 
 .section-title {
   text-align: center;
@@ -178,16 +307,13 @@ body {
 
   margin: 0 auto;
   background-color: var(--accent-bg);
-  
 }
 
 .currency-grid {
-    
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 16px;
 }
-
 
 .currency-card {
   position: relative;
@@ -200,7 +326,9 @@ body {
   text-align: center;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
 }
 
 .currency-card:hover {
@@ -209,7 +337,7 @@ body {
 }
 
 .currency-card::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-repeat: no-repeat;
@@ -225,57 +353,56 @@ body {
 }
 
 .currency-card[data-currency="USD"]::after {
-  background-image: url('../flags/us.png');
+  background-image: url("../flags/us.png");
 }
 
 .currency-card[data-currency="EUR"]::after {
-  background-image: url('../flags/eu.png');
+  background-image: url("../flags/eu.png");
 }
 
 .currency-card[data-currency="GBP"]::after {
-  background-image: url('../flags/gb.png');
+  background-image: url("../flags/gb.png");
 }
 
 .currency-card[data-currency="JPY"]::after {
-  background-image: url('../flags/jp.png');
+  background-image: url("../flags/jp.png");
 }
 
 .currency-card[data-currency="CNY"]::after {
-  background-image: url('../flags/cn.png');
+  background-image: url("../flags/cn.png");
 }
 
 .currency-card[data-currency="KRW"]::after {
-  background-image: url('../flags/kr.png');
+  background-image: url("../flags/kr.png");
 }
 
 .currency-card[data-currency="RUB"]::after {
-  background-image: url('../flags/ru.png');
+  background-image: url("../flags/ru.png");
 }
 
 .currency-card[data-currency="CHF"]::after {
-  background-image: url('../flags/ch.png');
+  background-image: url("../flags/ch.png");
 }
 
 .currency-card[data-currency="CAD"]::after {
-  background-image: url('../flags/ca.png');
+  background-image: url("../flags/ca.png");
 }
 
 .currency-card[data-currency="AUD"]::after {
-  background-image: url('../flags/au.png');
+  background-image: url("../flags/au.png");
 }
 
 .currency-card[data-currency="TRY"]::after {
-  background-image: url('../flags/tr.png');
+  background-image: url("../flags/tr.png");
 }
 
 .currency-card[data-currency="AED"]::after {
-  background-image: url('../flags/ae.png');
+  background-image: url("../flags/ae.png");
 }
 
 .currency-card[data-currency="UZS"]::after {
-  background-image: url('../flags/uz.png');
+  background-image: url("../flags/uz.png");
 }
-
 
 .modal-overlay {
   position: fixed;
@@ -320,7 +447,7 @@ body {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 20px;
- color: var(--modal-text);
+  color: var(--modal-text);
 }
 
 .modal table {
@@ -328,7 +455,8 @@ body {
   border-collapse: collapse;
 }
 
-.modal th, .modal td {
+.modal th,
+.modal td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid var(--modal-border);
@@ -350,10 +478,9 @@ body {
   right: 20px;
   font-size: 22px;
   font-weight: bold;
-   color: var(--modal-text);
+  color: var(--modal-text);
   cursor: pointer;
 }
-
 
 .comparison-section {
   padding: 48px 24px;

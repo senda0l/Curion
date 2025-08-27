@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Curion</title>
     <link rel="stylesheet" href="style/style.css" />
-    <link rel="icon" href="img/download.png">
+    <link rel="icon" href="img/download.png" />
   </head>
   <body>
     <nav class="navbar">
@@ -15,11 +15,37 @@
           <li><a href="#currencies">Валюты</a></li>
           <li><a href="#currencies">Сравнение</a></li>
         </ul>
-        
+
         <button id="theme-toggle" class="theme-toggle">🌙</button>
       </div>
     </nav>
-    
+
+    <div class="feedback">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path  d="M464 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0m200 0a48 48 0 1 0 96 0a48 48 0 1 0-96 0m-400 0a48 48 0 1 0 96 0a48 48 0 1 0-96 0m661.2-173.6c-22.6-53.7-55-101.9-96.3-143.3a444.35 444.35 0 0 0-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6.3-119.3 12.3-174.5 35.9a445.35 445.35 0 0 0-142 96.5c-40.9 41.3-73 89.3-95.2 142.8c-23 55.4-34.6 114.3-34.3 174.9A449.4 449.4 0 0 0 112 714v152a46 46 0 0 0 46 46h152.1A449.4 449.4 0 0 0 510 960h2.1c59.9 0 118-11.6 172.7-34.3a444.48 444.48 0 0 0 142.8-95.2c41.3-40.9 73.8-88.7 96.5-142c23.6-55.2 35.6-113.9 35.9-174.5c.3-60.9-11.5-120-34.8-175.6m-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-.4-99.7 37.7-193.3 107.6-263.8c69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9c44.6 18.7 84.6 45.6 119 80c34.3 34.3 61.3 74.4 80 119c19.4 46.2 29.1 95.2 28.9 145.8c-.6 99.6-39.7 192.9-110.1 262.7"/></svg>
+    </div>
+
+    <div class="modal-fb">
+      <div class="fb-content">
+        <span class="fb-close" id="fb-close">&times;</span>
+        <h3 class="fb-content-title">Обратная связь</h3>
+        <div class="forms">
+          <form class="card">
+            <div class="inputs">
+              <input
+                class="input"
+                type="email"
+                placeholder="example@gmail.com"
+              />
+              <textarea class="text" placeholder="Your message..."></textarea>
+            </div>
+            <div class="btns">
+              <button id="send" type="submit">send</button>
+              <button id="btn" type="button">clear</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <section class="hero" id="hero">
       <div class="container">
@@ -34,70 +60,72 @@
     <section class="currencies-section" id="currencies">
       <div class="container">
         <h2 class="section-title">Популярные валюты</h2>
-        <div class="currency-grid">
-         
-        </div>
+        <div class="currency-grid"></div>
       </div>
     </section>
 
+    <div class="modal-overlay" id="modal">
+      <div class="modal">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <h3>Курсы валют</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Валюта</th>
+              <th>Курс</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
 
-  <div class="modal-overlay" id="modal">
-  <div class="modal">
-    <span class="modal-close" id="modal-close">&times;</span>
-    <h3>Курсы валют</h3>
-    <table>
-      <thead>
-        <tr><th>Валюта</th><th>Курс</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
-</div>
+    <section class="comparison-section" id="comparison">
+      <div class="container">
+        <h2 class="section-title">Сравнение валют</h2>
 
-<section class="comparison-section" id="comparison">
-  <div class="container">
-    <h2 class="section-title">Сравнение валют</h2>
-    
-    <form id="compare-form" class="compare-form">
-      <input type="number" id="amount" placeholder="Сумма" min="0" required>
-      
-      <select id="from-currency" required>
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="GBP">GBP</option>
-        <option value="JPY">JPY</option>
-        <option value="CNY">CNY</option>
-        <option value="KRW">KRW</option>
-        <option value="CHF">CHF</option>
-        <option value="CAD">CAD</option>
-        <option value="AUD">AUD</option>
-        <option value="TRY">TRY</option>
+        <form id="compare-form" class="compare-form">
+          <input
+            type="number"
+            id="amount"
+            placeholder="Сумма"
+            min="0"
+            required
+          />
 
-      </select>
+          <select id="from-currency" required>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+            <option value="CNY">CNY</option>
+            <option value="KRW">KRW</option>
+            <option value="CHF">CHF</option>
+            <option value="CAD">CAD</option>
+            <option value="AUD">AUD</option>
+            <option value="TRY">TRY</option>
+          </select>
 
-      <span class="arrow">→</span>
+          <span class="arrow">→</span>
 
-      <select id="to-currency" required>
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="JPY">JPY</option>
-        <option value="CNY">CNY</option>
-        <option value="KRW">KRW</option>
-        <option value="CHF">CHF</option>
-        <option value="CAD">CAD</option>
-        <option value="AUD">AUD</option>
-        <option value="TRY">TRY</option>
+          <select id="to-currency" required>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="JPY">JPY</option>
+            <option value="CNY">CNY</option>
+            <option value="KRW">KRW</option>
+            <option value="CHF">CHF</option>
+            <option value="CAD">CAD</option>
+            <option value="AUD">AUD</option>
+            <option value="TRY">TRY</option>
+          </select>
 
-      </select>
+          <button type="submit">Сравнить</button>
+        </form>
 
-      <button type="submit">Сравнить</button>
-    </form>
-
-    <div id="compare-result" class="compare-result"></div>
-  </div>
-</section>
-
-
+        <div id="compare-result" class="compare-result"></div>
+      </div>
+    </section>
 
     <script src="main.js"></script>
   </body>
