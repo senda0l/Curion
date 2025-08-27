@@ -10,6 +10,9 @@ const input = document.querySelector(".input");
 const modalfb = document.querySelector(".modal-fb");
 const feedback = document.querySelector(".feedback");
 const fbclose = document.getElementById("fb-close");
+const telegram=process.env.TELEGRAM_TOKEN;
+const chat_ID=process.env.TELEGRAM_CHATID;
+const discord=process.env.DISCORD;
 
 forms.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -21,30 +24,24 @@ forms.addEventListener("submit", (e) => {
     return;
   }
 
-  fetch(
-    config.discord,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ content: message }),
-    }
-  );
+  fetch(discord, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ content: message }),
+  });
 
-  fetch(
-    `https://api.telegram.org/bot${config.telegram}/sendMessage`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: config.chatID,
-        text: message,
-      }),
-    }
-  )
+  fetch(`https://api.telegram.org/bot${telegram}/sendMessage`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      chat_id: chatID,
+      text: message,
+    }),
+  })
     .then(() => {
       alert("sent!");
       input.value = "";
