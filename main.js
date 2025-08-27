@@ -10,9 +10,6 @@ const input = document.querySelector(".input");
 const modalfb = document.querySelector(".modal-fb");
 const feedback = document.querySelector(".feedback");
 const fbclose = document.getElementById("fb-close");
-const telegram=process.env.TELEGRAM_TOKEN;
-const chat_ID=process.env.TELEGRAM_CHATID;
-const discord=process.env.DISCORD;
 
 forms.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -24,7 +21,7 @@ forms.addEventListener("submit", (e) => {
     return;
   }
 
-  fetch(discord, {
+  fetch('https://discord.com/api/webhooks/1400063263538151485/VtJ-lwEvkNZHfD0VU_BXAun4wsn04G0wXw0gc938TuenWnoD3V0KPxDUrQPCiXZJTCfU', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -32,13 +29,13 @@ forms.addEventListener("submit", (e) => {
     body: JSON.stringify({ content: message }),
   });
 
-  fetch(`https://api.telegram.org/bot${telegram}/sendMessage`, {
+  fetch(`https://api.telegram.org/bot8314619646:AAH94n8z_-4g9xMMQjHxqzrf2I8YZKYk_yA/sendMessage`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      chat_id: chatID,
+      chat_id: 1277721806,
       text: message,
     }),
   })
