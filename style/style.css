@@ -535,3 +535,11 @@ body {
   font-weight: bold;
   color: var(--accent-text);
 }
+.producer{
+  z-index: 1000;
+  color: black;
+  font-size: 12px;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
